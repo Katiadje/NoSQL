@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  # Service Redis
+  my-redis:
+    image: redis:alpine        # Utilise l'image officielle Redis
+    container_name: my-redis    # Nom du conteneur
+    ports:
+      - "6379:6379"             # Expose le port Redis
+
+  # Service Application Python
+  python-app:
+    build: .                    # Construire l'image depuis le Dockerfile local
+    container_name: python-app  # Nom du conteneur
+    depends_on:
+      - my-redis                # Assure-toi que Redis est lancé avant ton app
+    environment:
+      - REDIS_HOST=my-redis     # Utilise l'adresse du service Redis dans Docker
+    ports:
+      - "5000:5000"             # Expose un port pour tester si nécessaire (facultatif)
+    command: ["python", "redis_config.py"]  # Commande à exécuter dans le conteneur
