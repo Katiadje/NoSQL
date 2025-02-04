@@ -81,5 +81,22 @@ client = MongoClient('mongodb://localhost:27017/')
    sudo apt update
    sudo apt install neo4j
 
+###
+
+###
+Tester les container:
+### Redis: 
+redis-cli ping il envoie PONG
+
+### MongDB:
+docker exec -it my-mongo-service bash
+docker run --name my-mongo -v ./config/mongodb/mongod.conf:/etc/mongod.conf -p 27017:27017 -d mongo --config /etc/mongod.conf
+
+### Neo4j
+docker start neo4j
+pip install neo4j
+python3 neo4j_setup.py
+
+###
 
 ###

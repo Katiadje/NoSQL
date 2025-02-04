@@ -6,9 +6,7 @@ services:
     container_name: my-redis-service
     ports:
       - "6379:6379"
-    volumes:
-      - ./01-redis/redis.conf:/usr/local/etc/redis/redis.conf
-    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    restart: always
 
   mongo:
     image: mongo:latest
@@ -18,7 +16,17 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=example
-    command: ["mongod"]
+    restart: always
+
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=neo4j/password
+    restart: always
 
   app:
     build: .
@@ -26,6 +34,7 @@ services:
     depends_on:
       - redis
       - mongo
+      - neo4j
     environment:
       - MONGO_URI=mongodb://root:example@my-mongo-service:27017/
       - REDIS_HOST=my-redis-service
@@ -33,12 +42,8 @@ services:
     volumes:
       - .:/app
     command: ["python", "mongo_setup.py"]
+    restart: always
 
-  neo4j:
-    image: neo4j
-    container_name: neo4j
-    ports:
-      - "7474:7474"
-      - "7687:7687"
-    environment:
-      NEO4J_AUTH: neo4j/password
+volumes:
+  mongo_data:
+  neo4j_data:
