@@ -64,3 +64,16 @@ Le script vérifie également l'existence de la clé après sa suppression.
 
 
 ###
+
+
+### Mongo Docker & Python Configuration
+docker pull mongo
+docker run --name my-mongo -p 27017:27017 -d mongo
+pip install pymongo
+from pymongo import MongoClient
+client = MongoClient('mongodb://localhost:27017/')
+
+
+
+
+###
