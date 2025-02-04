@@ -10,7 +10,7 @@ COPY redis_config.py /app/redis_config.py
 # Installer les dépendances nécessaires
 RUN pip install --no-cache-dir redis
 
-# Exposer le port Redis (facultatif si vous voulez l'accès direct depuis l'extérieur)
+# Exposer le port Redis
 EXPOSE 6379
 
 # Exécuter le script Python

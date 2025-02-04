@@ -2,13 +2,13 @@ import redis
 
 # Configuration du pool de connexions avec l'adresse du conteneur Redis
 pool = redis.ConnectionPool(
-    host='localhost',             # Utilisez l'adresse localhost si vous accédez à Redis depuis votre machine hôte
-    port=6379,                    # Le port du conteneur Redis
-    db=0,                         # Numéro de la base de données Redis
-    max_connections=10,           # Nombre maximal de connexions dans le pool
-    timeout=5,                    # Temps d'attente pour obtenir une connexion avant de lever une exception
-    socket_connect_timeout=3,     # Temps d'attente pour établir une connexion au serveur Redis
-    socket_keepalive=True         # Activer TCP keepalive
+    host='localhost',             
+    port=6379,                    
+    db=0,                         
+    max_connections=10,           
+    timeout=5,                    
+    socket_connect_timeout=3,    
+    socket_keepalive=True       
 )
 
 # Création de l'objet Redis avec le pool de connexions
