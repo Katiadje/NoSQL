@@ -2,9 +2,9 @@ import redis
 
 # Configuration du pool de connexions avec l'adresse du conteneur Redis
 pool = redis.ConnectionPool(
-    host='localhost',             
+    host='my-redis',             
     port=6379,                    
-    db=0,                         
+    db=0,                          
     max_connections=10,           
     timeout=5,                    
     socket_connect_timeout=3,    
