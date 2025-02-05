@@ -55,7 +55,9 @@ services:
     depends_on:
       - logstash
       - elasticsearch
+    command: ["filebeat", "-e", "--strict.perms=false"]
 
 networks:
   elk:
     driver: bridge
+    
