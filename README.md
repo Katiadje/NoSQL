@@ -87,33 +87,46 @@ client = MongoClient('mongodb://localhost:27017/')
 Tester les container:
 ### Redis: 
 redis-cli ping il envoie PONG
+docker exec -it my-redis-service redis-cli
+SET hello "world"
+GET hello il renvoie "world"
+
 
 ### MongDB:
 docker exec -it my-mongo-service bash
 docker run --name my-mongo -v ./config/mongodb/mongod.conf:/etc/mongod.conf -p 27017:27017 -d mongo --config /etc/mongod.conf
+
+docker exec -it my-mongo-service mongosh
+show dbs
+use mydb
+db.users.find() pour trouver ceux créer a la main
+db.accounts.find() pour retrouver les données du json
+
+
 
 ### Neo4j
 docker start neo4j
 pip install neo4j
 python3 neo4j_setup.py
 
+http://localhost:7474/browser/
+username: neo4j
+mdp: password
+
+
 ### Elastic search
 sur csv data
 📌 1. Vérifier si l'index csv-data existe
 Tu peux exécuter cette commande pour voir tous les index disponibles :
 
-bash
-Copier
-Modifier
+
 curl -X GET "http://localhost:9200/_cat/indices?v"
 Si csv-data n'apparaît pas dans la liste, cela signifie qu'il n'a pas encore été créé.
 
 📌 2. Créer l'index csv-data
 Si l'index csv-data n'existe pas, crée-le avec la commande suivante :
 
-bash
-Copier
-Modifier
+
 curl -X PUT "http://localhost:9200/csv-data" -H "Content-Type: application/json" -d '
 {
   "settings": {
