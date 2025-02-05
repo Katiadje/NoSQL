@@ -97,6 +97,63 @@ docker start neo4j
 pip install neo4j
 python3 neo4j_setup.py
 
-###
+### Elastic search
+sur csv data
+📌 1. Vérifier si l'index csv-data existe
+Tu peux exécuter cette commande pour voir tous les index disponibles :
+
+bash
+Copier
+Modifier
+curl -X GET "http://localhost:9200/_cat/indices?v"
+Si csv-data n'apparaît pas dans la liste, cela signifie qu'il n'a pas encore été créé.
+
+📌 2. Créer l'index csv-data
+Si l'index csv-data n'existe pas, crée-le avec la commande suivante :
+
+bash
+Copier
+Modifier
+curl -X PUT "http://localhost:9200/csv-data" -H "Content-Type: application/json" -d '
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 1
+  }
+}'
+📌 3. Vérifier que l'index est bien créé
+Après la création, vérifie qu'il existe bien :
+
+curl -X GET "http://localhost:9200/_cat/indices?v"
+
+Si csv-data apparaît dans la liste, alors l'index est bien créé et tu peux maintenant y insérer des documents.
+
+📌 4. Insérer un document test dans csv-data
+Ajoute un premier document pour tester :
+
+
+curl -X POST "http://localhost:9200/csv-data/_doc/1" -H "Content-Type: application/json" -d '
+{
+  "name": "Test Document",
+  "description": "This is a sample document."
+}'
+📌 5. Vérifier que le document est bien inséré
+Exécute la requête suivante pour récupérer tous les documents de l'index :
+
+curl -X GET "http://localhost:9200/csv-data/_search?q=*"
+Status: OK
+
+Tester les recipes:
+
+ curl -X GET "http://localhost:9200/csv-data/_search" -H "Content-Type: applicaticurl -X GET "http://localhost:9200/csv-data/_search" -H "Content-Type: application/json" -d '
+{
+  "query": {
+    "match": {
+      "title": "Pasta With Butternut Squash and Sage Brown Butter"
+    }
+  }
+}'
+{"took":3,"timed_out":false,"_shards":{"total":1,"successful":1,"skipped":0,"failed":0},"hits":{"total":{"value":0,"relation":"eq"},"max_score":null,"hits":[]}}
+
 
 ###
