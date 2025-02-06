@@ -82,6 +82,8 @@ client = MongoClient('mongodb://localhost:27017/')
    sudo apt install neo4j
 
 ###
+### Lancer des conteneurs
+docker-compose up --build
 
 ###
 Tester les container:
@@ -101,6 +103,7 @@ show dbs
 use mydb
 db.users.find() pour trouver ceux créer a la main
 db.accounts.find() pour retrouver les données du json
+
 
 
 
