@@ -15,11 +15,33 @@ Avant de démarrer, assurez-vous d'avoir Docker installé sur votre machine. Ce 
 ## Structure du projet
 
 /NOSQL
-  ├── Dockerfile
-  ├── docker-compose.yml
-  ├── redis_config.py
+  ├── ElasticSearch
+  │   ├── elastic_search
+  │   ├── elk-csv
+  │   ├── data
+  │   │   ├── elasticsearch
+  │   │   ├── logstash
+  │   │   ├── web_server_logs
+  │   ├── docker-compose.yml
+  │   ├── elk-stack
+  │   ├── filebeat
+  │   ├── logs
+  │   ├── logstash
+  │   ├── docker-compose.yml
+  │   ├── send_logs.py
+  ├── Redis_Mongo_Neo4j
+  │   ├── 01_Redis
+  │   │   ├── app-redis.py
+  │   ├── 02_MongoDB
+  │   │   ├── accounts.json
+  │   │   ├── app-mongo.py
+  │   ├── 03_Neo4j
+  │   │   ├── app-neo4j.py
+  │   ├── docker-compose.yml
+  │   ├── Dockerfile
+  │   ├── requirements.txt
   ├── README.md
-
+  
 ## Installation et Exécution
 
 ### 1. Construire l'image Docker
