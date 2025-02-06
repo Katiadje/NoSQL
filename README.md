@@ -41,7 +41,7 @@ Avant de démarrer, assurez-vous d'avoir Docker installé sur votre machine. Ce 
   │   ├── Dockerfile
   │   ├── requirements.txt
   ├── README.md
-  
+
 ## Installation et Exécution
 
 ### 1. Construire l'image Docker
@@ -140,6 +140,10 @@ mdp: password
 
 
 ### Elastic search
+### Lien Kibana:
+ http://localhost:5601/app/kibana
+
+ 
 sur csv data
 📌 1. Vérifier si l'index csv-data existe
 Tu peux exécuter cette commande pour voir tous les index disponibles :
@@ -192,6 +196,8 @@ Tester les recipes:
   }
 }'
 {"took":3,"timed_out":false,"_shards":{"total":1,"successful":1,"skipped":0,"failed":0},"hits":{"total":{"value":0,"relation":"eq"},"max_score":null,"hits":[]}}
+
+
 
 
 ###
