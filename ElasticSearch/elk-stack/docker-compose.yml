@@ -35,7 +35,7 @@ services:
     container_name: kibana
     environment:
     - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-    - ELASTICSEARCH_USERNAME=elastic
+    - ELASTICSEARCH_USERNAME=elasticdock
     - ELASTICSEARCH_PASSWORD=password
     ports:
       - "5601:5601"
